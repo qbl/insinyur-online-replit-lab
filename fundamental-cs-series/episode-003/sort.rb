@@ -1,13 +1,18 @@
 def sort(input_array)
-  i = 0
-  unsorted_index = input_array.size-1
+  unsorted_until_index = input_array.size-1
   
-  while i < unsorted_index do
-    if input_array[i] > input_array[i+1]
-      input_array[i], input_array[i+1] = input_array[i+1], input_array[i] 
+  while unsorted_until_index >= 0 do
+    i = 0
+    
+    while i < unsorted_until_index do
+      if input_array[i] > input_array[i+1]
+        input_array[i], input_array[i+1] = input_array[i+1], input_array[i] 
+      end
+  
+      i += 1
     end
 
-    i += 1
+    unsorted_until_index -= 1
   end
 
   return input_array
