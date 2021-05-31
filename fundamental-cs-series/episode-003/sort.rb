@@ -1,3 +1,3 @@
 def sort(input_array)
-  return []
+  return input_array
 end
