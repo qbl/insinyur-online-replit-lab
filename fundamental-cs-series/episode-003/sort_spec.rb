@@ -16,4 +16,9 @@ describe 'Sort' do
     input_array = [2, 1]
     expect(sort(input_array)).to eq([1, 2])
   end
+
+  it 'should return [1, 2, 4] when sorting [4, 1, 2]' do
+    input_array = [4, 1, 2]
+    expect(sort(input_array)).to eq([1, 2, 4])
+  end
 end
