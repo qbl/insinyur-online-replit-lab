@@ -26,4 +26,9 @@ describe 'Sort' do
     input_array = [4, 2, 1]
     expect(sort(input_array)).to eq([1, 2, 4])
   end
+
+  it 'should sort any unordered array' do
+    input_array = [4, 2, 1, 5, 6, 3, 9, 8, 0, 7]
+    expect(sort(input_array)).to eq([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+  end
 end
