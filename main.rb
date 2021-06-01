@@ -1,1 +1,0 @@
-puts "Hello, world! We are trying to integrate Replit with Github."
