@@ -1,5 +1,5 @@
 def sort(input_array)
-  bubble_sort(input_array)
+  selection_sort(input_array)
 end
 
 def bubble_sort(input_array)
@@ -17,6 +17,29 @@ def bubble_sort(input_array)
     end
 
     unsorted_until_index -= 1
+  end
+
+  return input_array
+end
+
+def selection_sort(input_array)
+  starting_index = 0
+  array_size = (input_array.size-1)
+
+  while(starting_index < array_size) do
+    lowest_value = input_array[starting_index]
+    lowest_value_index = starting_index
+    second_index = starting_index + 1
+
+    for i in second_index..array_size do
+      if input_array[i] < lowest_value
+        lowest_value = input_array[i]
+        lowest_value_index = i
+      end
+    end
+
+    input_array[starting_index], input_array[lowest_value_index] = input_array[lowest_value_index], input_array[starting_index]
+    starting_index += 1
   end
 
   return input_array
