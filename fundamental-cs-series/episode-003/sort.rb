@@ -3,14 +3,14 @@ def sort(input_array)
 end
 
 def bubble_sort(input_array)
-  unsorted_until_index = input_array.size-1
+  unsorted_until_index = input_array.size - 1
   
   while unsorted_until_index > 0 do
     i = 0
 
     while i < unsorted_until_index do
-      if input_array[i] > input_array[i+1]
-        input_array[i], input_array[i+1] = input_array[i+1], input_array[i] 
+      if input_array[i] > input_array[i + 1]
+        input_array[i], input_array[i + 1] = input_array[i + 1], input_array[i] 
       end
   
       i += 1
@@ -24,9 +24,9 @@ end
 
 def selection_sort(input_array)
   starting_index = 0
-  array_size = input_array.size-1
+  array_size = input_array.size - 1
 
-  while(starting_index < array_size) do
+  while starting_index < array_size
     lowest_value = input_array[starting_index]
     lowest_value_index = starting_index
     second_index = starting_index + 1
@@ -52,7 +52,7 @@ def insertion_sort(input_array)
     temp_value = input_array[i]
     position = i - 1
 
-    while position >= 0 do
+    while position >= 0
       if input_array[position] > temp_value
         input_array[position + 1] = input_array[position]
         position -= 1
