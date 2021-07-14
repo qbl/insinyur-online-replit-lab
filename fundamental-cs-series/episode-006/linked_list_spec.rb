@@ -15,4 +15,12 @@ describe 'LinkedList' do
       expect(linked_list.read(0)).to eq(nil)
     end
   end
+
+  describe '#append' do
+    it 'should add data to the head of an empty linked list' do
+      linked_list = LinkedList.new
+      linked_list.append("a")
+      expect(linked_list.read(0)).to eq("a")
+    end
+  end
 end

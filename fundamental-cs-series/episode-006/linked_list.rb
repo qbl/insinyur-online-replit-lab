@@ -8,6 +8,14 @@ class LinkedList
   end
 
   def read(index)
-    nil
+    if @head == nil
+      nil
+    else
+      @head.data
+    end
+  end
+
+  def append(data)
+    @head = Node.new(data)
   end
 end
