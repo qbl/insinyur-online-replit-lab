@@ -8,6 +8,10 @@ class BinarySearchTree
   end
 
   def insert(value)
-    @root = Node.new(value)
+    unless @root
+      @root = Node.new(value)
+    else
+      @root.left = Node.new(value)
+    end
   end
 end
