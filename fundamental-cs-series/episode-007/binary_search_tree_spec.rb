@@ -22,5 +22,12 @@ describe 'BinarySearchTree' do
       bst.insert(1)
       expect(bst.root.left.value).to eq(1)
     end
+
+    it 'should add new value as right node when inserting a bigger value than root node' do
+      bst = BinarySearchTree.new
+      bst.insert(2)
+      bst.insert(3)
+      expect(bst.root.right.value).to eq(3)
+    end
   end
 end
