@@ -31,8 +31,10 @@ class BinarySearchTree
     if node
       if value < node.value
         search(value, node.left)
+      elsif value > node.value
+        search(value, node.right)
       else
-        value == node.value
+        true
       end
     else
       false
