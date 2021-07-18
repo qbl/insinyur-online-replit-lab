@@ -22,7 +22,12 @@ class BinarySearchTree
 
         previous_node.left = Node.new(value)
       else
-        @root.right = Node.new(value)
+        while current_node
+          previous_node = current_node
+          current_node = current_node.right
+        end
+
+        previous_node.right = Node.new(value)
       end
     end
   end

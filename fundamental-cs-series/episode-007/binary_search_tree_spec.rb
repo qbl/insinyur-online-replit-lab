@@ -37,5 +37,13 @@ describe 'BinarySearchTree' do
       bst.insert(3)
       expect(bst.root.right.value).to eq(3)
     end
+
+    it 'should add new value as a grandchild right node when inserting a bigger value than root node and right node' do
+      bst = BinarySearchTree.new
+      bst.insert(1)
+      bst.insert(2)
+      bst.insert(3)
+      expect(bst.root.right.right.value).to eq(3)
+    end
   end
 end
