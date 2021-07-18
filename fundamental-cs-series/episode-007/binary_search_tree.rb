@@ -13,20 +13,20 @@ class BinarySearchTree
     else
       current_node = @root
       previous_node = @root
-      
-      if value < previous_node.value
-        while current_node
-          previous_node = current_node
-          current_node = current_node.left
-        end
 
-        previous_node.left = Node.new(value)
-      else
-        while current_node
-          previous_node = current_node
+      while current_node
+        previous_node = current_node
+        
+        if value < previous_node.value
+          current_node = current_node.left
+        else
           current_node = current_node.right
         end
-
+      end
+      
+      if value < previous_node.value
+        previous_node.left = Node.new(value)
+      else
         previous_node.right = Node.new(value)
       end
     end
