@@ -46,4 +46,11 @@ describe 'BinarySearchTree' do
       expect(bst.root.right.right.value).to eq(3)
     end
   end
+
+  describe '#search' do
+    it 'should return false when searching for value in an empty tree' do
+      bst = BinarySearchTree.new
+      expect(bst.search(1, bst.root)).to eq(false)
+    end
+  end
 end
