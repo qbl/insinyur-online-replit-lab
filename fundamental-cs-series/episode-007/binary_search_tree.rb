@@ -28,16 +28,14 @@ class BinarySearchTree
   end
 
   def search(value, node)
-    if node
-      if value < node.value
-        search(value, node.left)
-      elsif value > node.value
-        search(value, node.right)
-      else
-        true
-      end
-    else
+    if node == nil
       false
+    elsif value < node.value
+      search(value, node.left)
+    elsif value > node.value
+      search(value, node.right)
+    else
+      true
     end
   end
 end
