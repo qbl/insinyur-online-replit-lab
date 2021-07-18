@@ -29,7 +29,11 @@ class BinarySearchTree
 
   def search(value, node)
     if node
-      value == node.value
+      if value < node.value
+        search(value, node.left)
+      else
+        value == node.value
+      end
     else
       false
     end

@@ -64,5 +64,12 @@ describe 'BinarySearchTree' do
       bst.insert(2, bst.root)
       expect(bst.search(1, bst.root)).to eq(false)
     end
+
+    it 'should return true when searching for 1 in a tree with 2 as root and 1 as left node' do
+      bst = BinarySearchTree.new
+      bst.insert(2, bst.root)
+      bst.insert(1, bst.root)
+      expect(bst.search(1, bst.root)).to eq(true)
+    end
   end
 end
