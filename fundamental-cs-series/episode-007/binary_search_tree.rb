@@ -28,6 +28,10 @@ class BinarySearchTree
   end
 
   def search(value, node)
-    false
+    if node
+      true
+    else
+      false
+    end
   end
 end
