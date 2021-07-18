@@ -15,4 +15,11 @@ describe 'Node' do
       expect(node.left).to eq(nil)
     end
   end
+
+  describe '#right' do
+    it 'should return nil when first initialized' do
+      node = Node.new(2)
+      expect(node.right).to eq(nil)
+    end
+  end
 end
