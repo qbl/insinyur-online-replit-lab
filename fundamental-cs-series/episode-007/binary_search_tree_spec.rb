@@ -12,37 +12,37 @@ describe 'BinarySearchTree' do
   describe '#insert' do
     it 'should add new value as root node when inserting to an empty bst' do
       bst = BinarySearchTree.new
-      bst.insert(2)
+      bst.insert(2, bst.root)
       expect(bst.root.value).to eq(2)
     end
 
     it 'should add new value as left node when inserting a smaller value than root node' do
       bst = BinarySearchTree.new
-      bst.insert(2)
-      bst.insert(1)
+      bst.insert(2, bst.root)
+      bst.insert(1, bst.root)
       expect(bst.root.left.value).to eq(1)
     end
 
     it 'should add new value as a grandchild left node when inserting a smaller value than root node and left node' do
       bst = BinarySearchTree.new
-      bst.insert(3)
-      bst.insert(2)
-      bst.insert(1)
+      bst.insert(3, bst.root)
+      bst.insert(2, bst.root)
+      bst.insert(1, bst.root)
       expect(bst.root.left.left.value).to eq(1)
     end
 
     it 'should add new value as right node when inserting a bigger value than root node' do
       bst = BinarySearchTree.new
-      bst.insert(2)
-      bst.insert(3)
+      bst.insert(2, bst.root)
+      bst.insert(3, bst.root)
       expect(bst.root.right.value).to eq(3)
     end
 
     it 'should add new value as a grandchild right node when inserting a bigger value than root node and right node' do
       bst = BinarySearchTree.new
-      bst.insert(1)
-      bst.insert(2)
-      bst.insert(3)
+      bst.insert(1, bst.root)
+      bst.insert(2, bst.root)
+      bst.insert(3, bst.root)
       expect(bst.root.right.right.value).to eq(3)
     end
   end

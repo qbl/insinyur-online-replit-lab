@@ -7,27 +7,22 @@ class BinarySearchTree
     @root = nil
   end
 
-  def insert(value)
-    unless @root
+  def insert(value, node)
+    unless node
       @root = Node.new(value)
     else
-      current_node = @root
-      previous_node = @root
-
-      while current_node
-        previous_node = current_node
-        
-        if value < previous_node.value
-          current_node = current_node.left
+      if value < node.value
+        unless node.left
+          node.left = Node.new(value)
         else
-          current_node = current_node.right
+          insert(value, node.left)
         end
-      end
-      
-      if value < previous_node.value
-        previous_node.left = Node.new(value)
       else
-        previous_node.right = Node.new(value)
+        unless node.right
+          node.right = Node.new(value)
+        else
+          insert(value, node.right)
+        end
       end
     end
   end
