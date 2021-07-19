@@ -50,6 +50,7 @@ class BinarySearchTree
       node.left = nil
     elsif value > node.value
       deleted_node = node.right
+      node.right = nil
     end
 
     deleted_node
