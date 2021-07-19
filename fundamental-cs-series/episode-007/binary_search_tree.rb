@@ -7,7 +7,7 @@ class BinarySearchTree
     @root = nil
   end
 
-  def insert(value, node)
+  def insert(value, node=@root)
     unless node
       @root = Node.new(value)
     else
@@ -27,7 +27,7 @@ class BinarySearchTree
     end
   end
 
-  def search(value, node)
+  def search(value, node=@root)
     if node == nil
       false
     elsif value < node.value
