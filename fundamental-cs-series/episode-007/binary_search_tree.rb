@@ -40,7 +40,15 @@ class BinarySearchTree
   end
 
   def delete(value, node=@root)
-    @root = nil
-    node
+    if node == nil
+      deleted_node = nil
+    elsif value == node.value
+      @root = nil
+      deleted_node = node
+    else
+      deleted_node = node.left
+    end
+
+    deleted_node
   end
 end
