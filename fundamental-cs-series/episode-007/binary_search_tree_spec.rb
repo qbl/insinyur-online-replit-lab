@@ -85,5 +85,12 @@ describe 'BinarySearchTree' do
       bst = BinarySearchTree.new
       expect(bst.delete(1)).to eq(nil)
     end
+
+    it 'should return root node when deleting its value from a tree' do
+      bst = BinarySearchTree.new
+      bst.insert(1)
+      deleted_node = bst.delete(1)
+      expect(deleted_node.value).to eq(1)
+    end
   end
 end
