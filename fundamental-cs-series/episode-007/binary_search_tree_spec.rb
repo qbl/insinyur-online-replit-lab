@@ -79,4 +79,11 @@ describe 'BinarySearchTree' do
       expect(bst.search(2)).to eq(true)
     end
   end
+
+  describe '#delete' do
+    it 'should return nil when deleting value from an empty tree' do
+      bst = BinarySearchTree.new
+      expect(bst.delete(1)).to eq(nil)
+    end
+  end
 end
