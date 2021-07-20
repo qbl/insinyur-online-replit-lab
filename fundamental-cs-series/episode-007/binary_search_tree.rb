@@ -8,22 +8,12 @@ class BinarySearchTree
   end
 
   def insert(value, node=@root)
-    unless node
-      @root = Node.new(value)
+    return @root = Node.new(value) if node.nil?
+
+    if value < node.value
+      node.left.nil? ? node.left = Node.new(value) : insert(value, node.left)
     else
-      if value < node.value
-        unless node.left
-          node.left = Node.new(value)
-        else
-          insert(value, node.left)
-        end
-      else
-        unless node.right
-          node.right = Node.new(value)
-        else
-          insert(value, node.right)
-        end
-      end
+      node.right.nil? ? node.right = Node.new(value) : insert(value, node.right)
     end
   end
 
