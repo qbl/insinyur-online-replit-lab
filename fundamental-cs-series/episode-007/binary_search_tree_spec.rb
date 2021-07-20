@@ -1,0 +1,82 @@
+require 'rspec'
+require_relative 'binary_search_tree'
+
+describe 'BinarySearchTree' do
+  describe '#root' do
+    it 'should return nil when first initialized' do
+      bst = BinarySearchTree.new
+      expect(bst.root).to eq(nil)
+    end
+  end
+
+  describe '#insert' do
+    it 'should add new value as root node when inserting to an empty bst' do
+      bst = BinarySearchTree.new
+      bst.insert(2)
+      expect(bst.root.value).to eq(2)
+    end
+
+    it 'should add new value as left node when inserting a smaller value than root node' do
+      bst = BinarySearchTree.new
+      bst.insert(2)
+      bst.insert(1)
+      expect(bst.root.left.value).to eq(1)
+    end
+
+    it 'should add new value as a grandchild left node when inserting a smaller value than root node and left node' do
+      bst = BinarySearchTree.new
+      bst.insert(3)
+      bst.insert(2)
+      bst.insert(1)
+      expect(bst.root.left.left.value).to eq(1)
+    end
+
+    it 'should add new value as right node when inserting a bigger value than root node' do
+      bst = BinarySearchTree.new
+      bst.insert(2)
+      bst.insert(3)
+      expect(bst.root.right.value).to eq(3)
+    end
+
+    it 'should add new value as a grandchild right node when inserting a bigger value than root node and right node' do
+      bst = BinarySearchTree.new
+      bst.insert(1)
+      bst.insert(2)
+      bst.insert(3)
+      expect(bst.root.right.right.value).to eq(3)
+    end
+  end
+
+  describe '#search' do
+    it 'should return false when searching for value in an empty tree' do
+      bst = BinarySearchTree.new
+      expect(bst.search(1)).to eq(false)
+    end
+
+    it 'should return true when searching for 1 in a tree with 1 as root' do
+      bst = BinarySearchTree.new
+      bst.insert(1)
+      expect(bst.search(1)).to eq(true)
+    end
+
+    it 'should return false when searching for 1 in a tree with 2 as root' do
+      bst = BinarySearchTree.new
+      bst.insert(2)
+      expect(bst.search(1)).to eq(false)
+    end
+
+    it 'should return true when searching for 1 in a tree with 2 as root and 1 as left node' do
+      bst = BinarySearchTree.new
+      bst.insert(2)
+      bst.insert(1)
+      expect(bst.search(1)).to eq(true)
+    end
+
+    it 'should return true when searching for 2 in a tree with 1 as root and 2 as right node' do
+      bst = BinarySearchTree.new
+      bst.insert(1)
+      bst.insert(2)
+      expect(bst.search(2)).to eq(true)
+    end
+  end
+end
