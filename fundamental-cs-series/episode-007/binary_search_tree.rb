@@ -39,20 +39,43 @@ class BinarySearchTree
     end
   end
 
-  def delete(value, node=@root)
-    if node == nil
+  def delete(value, node=@root, parent_node=nil)
+    if node.nil?
       deleted_node = nil
     elsif value == node.value
-      @root = nil
       deleted_node = node
-    elsif value < node.value
-      deleted_node = node.left
-      node.left = nil
-    elsif value > node.value
-      deleted_node = node.right
-      node.right = nil
-    end
 
+      if parent_node == nil
+        @root = nil
+      else
+        if node.right
+          lift_node(node, parent_node)
+        elsif node.left
+          parent_node.left = node.left
+        else
+          parent_node.left = nil
+        end
+      end
+    else
+      deleted_node = delete(value, node.left, node)
+    end
+    
     deleted_node
+  end
+
+  def lift_node(node, parent_node)
+    parent_node.left = min_value(node.right)
+    delete(parent_node.left.value, node.right, node.right)
+    
+    parent_node.left.right = node.right
+    parent_node.left.left = node.left
+  end
+
+  def min_value(node)
+    if node.left.nil?
+      node
+    else
+      min_value(node.left)
+    end
   end
 end

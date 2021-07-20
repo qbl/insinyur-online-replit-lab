@@ -81,55 +81,100 @@ describe 'BinarySearchTree' do
   end
 
   describe '#delete' do
-    it 'should return nil when deleting value from an empty tree' do
-      bst = BinarySearchTree.new
-      expect(bst.delete(1)).to eq(nil)
+    context 'when deleting an empty tree' do
+      it 'should return nil with any value' do
+        bst = BinarySearchTree.new
+        expect(bst.delete(1)).to eq(nil)
+      end
     end
 
-    it 'should return root node when deleting its value from a tree' do
-      bst = BinarySearchTree.new
-      bst.insert(1)
-      deleted_node = bst.delete(1)
-      expect(deleted_node.value).to eq(1)
+    context 'when deleting root node' do
+      before do
+        @bst = BinarySearchTree.new
+        @bst.insert(1)
+      end
+
+      it 'should return root node' do
+        deleted_node = @bst.root
+        expect(@bst.delete(1)).to eq(deleted_node)
+      end
+  
+      it 'should ensure root node is nil' do
+        @bst.delete(1)
+        expect(@bst.root).to eq(nil)
+      end
     end
 
-    it 'should ensure root node is nil when it is deleted from a tree' do
-      bst = BinarySearchTree.new
-      bst.insert(1)
-      deleted_node = bst.delete(1)
-      expect(bst.root).to eq(nil)
-    end
+    context 'when deleting left child node' do
+      context 'with no grandchild' do
+        before do
+          @bst = BinarySearchTree.new
+          @bst.insert(2)
+          @bst.insert(1)
+        end
 
-    it 'should return left node when it is deleted from a tree' do
-      bst = BinarySearchTree.new
-      bst.insert(2)
-      bst.insert(1)
-      deleted_node = bst.delete(1)
-      expect(deleted_node.value).to eq(1)
-    end
+        it 'should return left node when deleting its value from a tree' do
+          deleted_node = @bst.root.left
+          expect(@bst.delete(1)).to eq(deleted_node)
+        end
+    
+        it 'should ensure left node is nil when it is deleted from a tree' do
+          @bst.delete(1)
+          expect(@bst.root.left).to eq(nil)
+        end
+      end
 
-    it 'should return ensure left node is nil when it is deleted from a tree' do
-      bst = BinarySearchTree.new
-      bst.insert(2)
-      bst.insert(1)
-      deleted_node = bst.delete(1)
-      expect(bst.root.left).to eq(nil)
-    end
+      context 'with left grandchild node only' do
+        before do
+          @bst = BinarySearchTree.new
+          @bst.insert(3)
+          @bst.insert(2)
+          @bst.insert(1)
+        end
 
-    it 'should return right node when it is deleted from a tree' do
-      bst = BinarySearchTree.new
-      bst.insert(1)
-      bst.insert(2)
-      deleted_node = bst.delete(2)
-      expect(deleted_node.value).to eq(2)
-    end
+        it 'should return left grandchild node when deleting its value' do
+          deleted_node = @bst.root.left.left
+          expect(@bst.delete(1)).to eq(deleted_node)
+        end
 
-    it 'should return ensure right node is nil when it is deleted from a tree' do
-      bst = BinarySearchTree.new
-      bst.insert(1)
-      bst.insert(2)
-      deleted_node = bst.delete(2)
-      expect(bst.root.right).to eq(nil)
+        it 'should ensure left grandchild node is nil' do
+          @bst.delete(1)
+          expect(@bst.root.left.left).to eq(nil)
+        end
+    
+        it 'should turn left grandchild node into new left node when deleting the left node' do
+          @bst.delete(2)
+          expect(@bst.root.left.value).to eq(1)
+        end
+      end
+
+      context 'with two grandchild nodes and subtree as its right grandchild node' do
+        before do
+          @bst = BinarySearchTree.new
+          @bst.insert(6)
+          @bst.insert(2)
+          @bst.insert(1)
+          @bst.insert(4)
+          @bst.insert(3)
+          @bst.delete(2)
+        end
+  
+        it 'should turn left most node from its right subtree into new left node' do
+          expect(@bst.root.left.value).to eq(3)
+        end
+        
+        it 'should ensure new left node linked to the correct right node' do
+          expect(@bst.root.left.right.value).to eq(4)
+        end
+  
+        it 'should ensure new left node linked to the correct left node' do
+          expect(@bst.root.left.left.value).to eq(1)
+        end
+  
+        it 'should ensure new left node is deleted from its previous position' do
+          expect(@bst.root.left.right.left).to eq(nil)
+        end
+      end
     end
   end
 end
