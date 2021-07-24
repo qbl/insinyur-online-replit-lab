@@ -174,5 +174,17 @@ describe 'BinarySearchTree' do
         expect(deleted_node.value).to eq(1)
       end
     end
+
+    context 'when deleting right child node' do
+      context 'with no grandchild node' do
+        it 'should return right child node' do
+          bst = BinarySearchTree.new
+          bst.insert(1)
+          bst.insert(2)
+          deleted_node = bst.delete(2)
+          expect(deleted_node.value).to eq(2)
+        end
+      end
+    end
   end
 end

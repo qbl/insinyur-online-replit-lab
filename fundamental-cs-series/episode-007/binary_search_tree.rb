@@ -60,8 +60,10 @@ class BinarySearchTree
           parent_node.left = nil
         end
       end
-    else
+    elsif value < node.value
       deleted_node = delete(value, node.left, node)
+    elsif value > node.value
+      deleted_node = node.right
     end
 
     deleted_node
