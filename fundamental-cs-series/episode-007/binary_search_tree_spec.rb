@@ -123,5 +123,16 @@ describe 'BinarySearchTree' do
         end
       end
     end
+
+    context 'when deleting left grandchild node' do
+      it 'should return left grandchild node' do
+        bst = BinarySearchTree.new
+        bst.insert(3)
+        bst.insert(2)
+        bst.insert(1)
+        deleted_node = bst.delete(1)
+        expect(deleted_node.value).to eq(1)
+      end
+    end
   end
 end
