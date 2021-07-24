@@ -48,7 +48,11 @@ class BinarySearchTree
       if parent_node == nil
         @root = nil
       else
-        parent_node.left = nil
+        if node.left == nil
+          parent_node.left = nil
+        else
+          parent_node.left = node.left
+        end
       end
     else
       deleted_node = delete(value, node.left, node)

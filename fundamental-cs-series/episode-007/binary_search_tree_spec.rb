@@ -122,6 +122,17 @@ describe 'BinarySearchTree' do
           expect(bst.root.left).to eq(nil)
         end
       end
+
+      context 'with left grandchild node only' do
+        it 'should turn left grandhcild node into new left child node' do
+          bst = BinarySearchTree.new
+          bst.insert(3)
+          bst.insert(2)
+          bst.insert(1)
+          deleted_node = bst.delete(2)
+          expect(bst.root.left.value).to eq(1)
+        end
+      end
     end
 
     context 'when deleting left grandchild node' do
