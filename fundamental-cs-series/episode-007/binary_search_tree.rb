@@ -47,6 +47,7 @@ class BinarySearchTree
       @root = nil
     else
       deleted_node = node.left
+      @root.left = nil
     end
 
     deleted_node
