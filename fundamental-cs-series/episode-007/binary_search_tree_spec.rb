@@ -157,6 +157,10 @@ describe 'BinarySearchTree' do
         it 'should ensure new left node linked to the correct right node' do
           expect(@bst.root.left.right.value).to eq(4)
         end
+
+        it 'should ensure new left node is deleted from its previous position' do
+          expect(@bst.root.left.right.left).to eq(nil)
+        end
       end
     end
 

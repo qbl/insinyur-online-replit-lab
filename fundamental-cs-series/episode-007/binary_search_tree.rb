@@ -50,6 +50,8 @@ class BinarySearchTree
       else
         if node.right
           parent_node.left = min_value(node.right)
+          delete(parent_node.left.value, node.right, node.right)
+
           parent_node.left.left = node.left
           parent_node.left.right = node.right
         elsif node.left
