@@ -135,40 +135,27 @@ describe 'BinarySearchTree' do
       end
 
       context 'with two grandchildren and a subtree as its right grandchild node' do
+        before do
+          @bst = BinarySearchTree.new
+          @bst.insert(6)
+          @bst.insert(2)
+          @bst.insert(1)
+          @bst.insert(4)
+          @bst.insert(3)
+          @bst.insert(5)
+          @bst.delete(2)
+        end
+
         it 'should turn left most node from its right subtree into a new left node' do
-          bst = BinarySearchTree.new
-          bst.insert(6)
-          bst.insert(2)
-          bst.insert(1)
-          bst.insert(4)
-          bst.insert(3)
-          bst.insert(5)
-          deleted_node = bst.delete(2)
-          expect(bst.root.left.value).to eq(3)
+          expect(@bst.root.left.value).to eq(3)
         end
 
         it 'should ensure new left node linked to the correct left node' do
-          bst = BinarySearchTree.new
-          bst.insert(6)
-          bst.insert(2)
-          bst.insert(1)
-          bst.insert(4)
-          bst.insert(3)
-          bst.insert(5)
-          deleted_node = bst.delete(2)
-          expect(bst.root.left.left.value).to eq(1)
+          expect(@bst.root.left.left.value).to eq(1)
         end
 
         it 'should ensure new left node linked to the correct right node' do
-          bst = BinarySearchTree.new
-          bst.insert(6)
-          bst.insert(2)
-          bst.insert(1)
-          bst.insert(4)
-          bst.insert(3)
-          bst.insert(5)
-          deleted_node = bst.delete(2)
-          expect(bst.root.left.right.value).to eq(4)
+          expect(@bst.root.left.right.value).to eq(4)
         end
       end
     end
