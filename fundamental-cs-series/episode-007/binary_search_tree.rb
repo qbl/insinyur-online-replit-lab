@@ -48,10 +48,12 @@ class BinarySearchTree
       if parent_node == nil
         @root = nil
       else
-        if node.left == nil
-          parent_node.left = nil
-        else
+        if node.right
+          parent_node.left = min_value(node.right)
+        elsif node.left
           parent_node.left = node.left
+        else
+          parent_node.left = nil
         end
       end
     else
@@ -59,5 +61,13 @@ class BinarySearchTree
     end
 
     deleted_node
+  end
+
+  def min_value(node)
+    if node.left == nil
+      node
+    else
+      min_value(node.left)
+    end
   end
 end
