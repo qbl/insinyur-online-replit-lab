@@ -64,6 +64,7 @@ class BinarySearchTree
       deleted_node = delete(value, node.left, node)
     elsif value > node.value
       deleted_node = node.right
+      @root.right = nil
     end
 
     deleted_node
