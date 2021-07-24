@@ -146,6 +146,18 @@ describe 'BinarySearchTree' do
           deleted_node = bst.delete(2)
           expect(bst.root.left.value).to eq(3)
         end
+
+        it 'should ensure new left node linked to the correct left node' do
+          bst = BinarySearchTree.new
+          bst.insert(6)
+          bst.insert(2)
+          bst.insert(1)
+          bst.insert(4)
+          bst.insert(3)
+          bst.insert(5)
+          deleted_node = bst.delete(2)
+          expect(bst.root.left.left.value).to eq(1)
+        end
       end
     end
 
