@@ -1,7 +1,7 @@
 require_relative 'node'
 
 class BinarySearchTree
-  attr_reader :root
+  attr_accessor :root
 
   def initialize
     @root = nil
@@ -39,33 +39,19 @@ class BinarySearchTree
     end
   end
 
-  def delete(value, node=@root, parent_node=nil, mark=nil)
+  def delete(value, node=@root, parent_node=self, mark="root")
     return nil if node == nil
     
     if value == node.value
-      deleted_node = node
+      deleted_node = (parent_node == self) ? @root.dup : node
 
       if node.left.nil? && node.right.nil?
-        if parent_node == nil
-          @root = nil
-        else
-          parent_node.send("#{mark}=", nil)
-        end
+        parent_node.send("#{mark}=", nil)
       elsif node.left.nil? || node.right.nil?
-        if parent_node == nil
-          @root = node.left || node.right
-        else
-          parent_node.send("#{mark}=", node.left || node.right)
-        end
+        parent_node.send("#{mark}=", node.left || node.right)
       else
-        if parent_node == nil
-          deleted_node = @root.dup
-          @root.value = min_value(node.right).value
-          delete(@root.value, @root.right, @root, "right")
-        else
-          parent_node.send(mark).value = min_value(node.right).value
-          delete(parent_node.send(mark).value, node.right, node.right, "right")
-        end
+        parent_node.send(mark).value = min_value(node.right).value
+        delete(parent_node.send(mark).value, node.right, node, "right")
       end
     elsif value < node.value
       deleted_node = delete(value, node.left, node, "left")
