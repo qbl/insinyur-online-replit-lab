@@ -39,42 +39,45 @@ class BinarySearchTree
     end
   end
 
-  def delete(value, node=@root, parent_node=nil)
-    if node == nil
-      deleted_node = nil
-    elsif value == node.value
+  def delete(value, node=@root, parent_node=nil, mark=nil)
+    return nil if node == nil
+    
+    if value == node.value
       deleted_node = node
 
-      if parent_node == nil
-        @root = nil
-      else
-        if node.right
-          parent_node.left = min_value(node.right)
-          delete(parent_node.left.value, node.right, node.right)
-
-          parent_node.left.left = node.left
-          parent_node.left.right = node.right
-        elsif node.left
-          parent_node.left = node.left
+      if node.left.nil? && node.right.nil?
+        if parent_node == nil
+          @root = nil
         else
-          parent_node.left = nil
+          parent_node.send("#{mark}=", nil)
+        end
+      elsif node.left.nil? || node.right.nil?
+        if parent_node == nil
+          @root = node.left || node.right
+        else
+          parent_node.send("#{mark}=", node.left || node.right)
+        end
+      else
+        if parent_node == nil
+          deleted_node = @root.dup
+          @root.value = min_value(node.right).value
+          delete(@root.value, @root.right, @root, "right")
+        else
+          parent_node.send(mark).value = min_value(node.right).value
+          delete(parent_node.send(mark).value, node.right, node.right, "right")
         end
       end
     elsif value < node.value
-      deleted_node = delete(value, node.left, node)
+      deleted_node = delete(value, node.left, node, "left")
     elsif value > node.value
-      deleted_node = node.right
-      @root.right = nil
+      deleted_node = delete(value, node.right, node, "right")
     end
 
     deleted_node
   end
 
   def min_value(node)
-    if node.left == nil
-      node
-    else
-      min_value(node.left)
-    end
+    return node if node.left == nil
+    return min_value(node.left)
   end
 end
