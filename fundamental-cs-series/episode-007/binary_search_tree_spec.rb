@@ -177,6 +177,17 @@ describe 'BinarySearchTree' do
           bst.delete(2)
           expect(bst.root.left.value).to eq(3)
         end
+
+        it 'should ensure left most child node from its right subree is removed from its previous position' do
+          bst = BinarySearchTree.new
+          bst.insert(4)
+          bst.insert(2)
+          bst.insert(5)
+          bst.insert(1)
+          bst.insert(3)
+          bst.delete(2)
+          expect(bst.root.left.right).to eq(nil)
+        end
       end
     end
   end

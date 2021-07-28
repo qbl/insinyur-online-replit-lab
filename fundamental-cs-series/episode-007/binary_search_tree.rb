@@ -42,6 +42,7 @@ class BinarySearchTree
           parent_node.public_send("#{mark}=", node.left || node.right)
         else
           parent_node.public_send(mark).value = min_value(node.right).value
+          delete(parent_node.public_send(mark).value, node.right, node, "right")
         end
       end
     elsif value < node.value
