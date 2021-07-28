@@ -1,7 +1,7 @@
 require_relative 'node'
 
 class BinarySearchTree
-  attr_reader :root
+  attr_accessor :root
 
   def initialize
     @root = nil
@@ -29,7 +29,7 @@ class BinarySearchTree
     end
   end
 
-  def delete(value, node=@root, parent_node=nil, mark=nil)
+  def delete(value, node=@root, parent_node=self, mark="root")
     return nil if node == nil
 
     deleted_node = node
