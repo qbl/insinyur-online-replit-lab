@@ -36,9 +36,11 @@ class BinarySearchTree
 
     if value == node.value
       @root = nil
-    else
+    elsif value < node.value
       deleted_node = @root.left
       @root.left = nil
+    elsif value > node.value
+      deleted_node = @root.right
     end
 
     deleted_node
