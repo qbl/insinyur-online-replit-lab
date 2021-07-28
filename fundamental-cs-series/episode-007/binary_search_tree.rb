@@ -30,6 +30,9 @@ class BinarySearchTree
   end
 
   def delete(value, node=@root)
-    @root
+    deleted_node = @root
+    @root = nil
+
+    deleted_node
   end
 end
