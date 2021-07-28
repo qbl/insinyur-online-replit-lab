@@ -165,6 +165,19 @@ describe 'BinarySearchTree' do
           expect(bst.root.left.value).to eq(2)
         end
       end
+
+      context 'with two grandchildren nodes' do
+        it 'should turn left most node from its right subtree into the new left child node' do
+          bst = BinarySearchTree.new
+          bst.insert(4)
+          bst.insert(2)
+          bst.insert(5)
+          bst.insert(1)
+          bst.insert(3)
+          bst.delete(2)
+          expect(bst.root.left.value).to eq(3)
+        end
+      end
     end
   end
 end

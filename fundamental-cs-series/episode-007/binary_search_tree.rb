@@ -38,7 +38,11 @@ class BinarySearchTree
       if parent_node == nil
         @root = nil
       else
-        parent_node.public_send("#{mark}=", node.left || node.right) if node.left.nil? || node.right.nil?
+        if node.left.nil? || node.right.nil?
+          parent_node.public_send("#{mark}=", node.left || node.right)
+        else
+          parent_node.public_send(mark).value = min_value(node.right).value
+        end
       end
     elsif value < node.value
       deleted_node = delete(value, node.left, node, 'left')
@@ -47,5 +51,10 @@ class BinarySearchTree
     end
 
     deleted_node
+  end
+
+  def min_value(node)
+    return node if node.left == nil
+    return min_value(node.left)
   end
 end
