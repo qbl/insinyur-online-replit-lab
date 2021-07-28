@@ -35,15 +35,15 @@ class BinarySearchTree
     deleted_node = node
 
     if value == node.value
-      if parent_node == nil
-        @root = nil
+      if node.left.nil? && node.right.nil?
+        parent_node.public_send("#{mark}=", nil)
+      elsif node.left.nil? || node.right.nil?
+        parent_node.public_send("#{mark}=", node.left || node.right)
       else
-        if node.left.nil? || node.right.nil?
-          parent_node.public_send("#{mark}=", node.left || node.right)
-        else
-          parent_node.public_send(mark).value = min_value(node.right).value
-          delete(parent_node.public_send(mark).value, node.right, node, "right")
-        end
+        deleted_node = @root.dup if parent_node == self
+
+        parent_node.public_send(mark).value = min_value(node.right).value
+        delete(parent_node.public_send(mark).value, node.right, node, "right")
       end
     elsif value < node.value
       deleted_node = delete(value, node.left, node, 'left')

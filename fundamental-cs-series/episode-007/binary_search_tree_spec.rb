@@ -112,6 +112,19 @@ describe 'BinarySearchTree' do
           expect(bst.root.value).to eq(1)
         end
       end
+
+      context 'with two children nodes' do
+        it 'should return root node' do
+          bst = BinarySearchTree.new
+          bst.insert(2)
+          bst.insert(1)
+          bst.insert(4)
+          bst.insert(3)
+          bst.insert(5)
+          deleted_node = bst.delete(2)
+          expect(deleted_node.value).to eq(2)
+        end
+      end
     end
 
     context 'when deleting child node' do
