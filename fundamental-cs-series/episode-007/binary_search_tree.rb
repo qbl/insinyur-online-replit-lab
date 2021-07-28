@@ -38,11 +38,7 @@ class BinarySearchTree
       if parent_node == nil
         @root = nil
       else
-        if mark == 'left'
-          parent_node.left = node.left
-        elsif mark == 'right'
-          parent_node.right = node.right
-        end
+        parent_node.public_send("#{mark}=", node.left || node.right) if node.left.nil? || node.right.nil?
       end
     elsif value < node.value
       deleted_node = delete(value, node.left, node, 'left')

@@ -155,6 +155,15 @@ describe 'BinarySearchTree' do
           bst.delete(2)
           expect(bst.root.right.value).to eq(3)
         end
+
+        it 'should turn right grandchild node into the new left child node' do
+          bst = BinarySearchTree.new
+          bst.insert(3)
+          bst.insert(1)
+          bst.insert(2)
+          bst.delete(1)
+          expect(bst.root.left.value).to eq(2)
+        end
       end
     end
   end
