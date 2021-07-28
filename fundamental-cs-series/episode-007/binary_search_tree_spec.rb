@@ -215,5 +215,30 @@ describe 'BinarySearchTree' do
         end
       end
     end
+
+    it 'should pass the following complex tree example' do
+      bst = BinarySearchTree.new
+      bst.insert(8)
+      bst.insert(4)
+      bst.insert(12)
+      bst.insert(2)
+      bst.insert(6)
+      bst.insert(10)
+      bst.insert(14)
+      bst.insert(1)
+      bst.insert(3)
+      bst.insert(5)
+      bst.insert(7)
+      bst.insert(9)
+      bst.insert(11)
+      bst.insert(13)
+      bst.insert(15)
+      deleted_node = bst.delete(8)
+      expect(deleted_node.value).to eq(8)
+      expect(bst.root.value).to eq(9)
+      expect(bst.root.left.value).to eq(4)
+      expect(bst.root.right.value).to eq(12)
+      expect(bst.root.right.left.left).to eq(nil)
+    end
   end
 end
