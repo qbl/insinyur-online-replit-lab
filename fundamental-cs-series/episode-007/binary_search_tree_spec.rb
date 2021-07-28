@@ -101,5 +101,17 @@ describe 'BinarySearchTree' do
         expect(bst.root).to eq(nil)
       end
     end
+
+    context 'when deleting child node' do
+      context 'with no grandchild node' do
+        it 'should return left child node when deleting left child node' do
+          bst = BinarySearchTree.new
+          bst.insert(2)
+          bst.insert(1)
+          deleted_node = bst.delete(1)
+          expect(deleted_node.value).to eq(1)
+        end
+      end
+    end
   end
 end
